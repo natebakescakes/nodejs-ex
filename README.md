@@ -109,9 +109,9 @@ Looking at the repo, you'll notice three files in the openshift/template directo
 	│       └── nodejs-mongodb-persistent.json
 	├── package.json
 	├── README.md
-	├── server.js
+	├── app.js
 	├── tests
-	│   └── app_test.js
+	│   └── app.test.js
 	└── views
 	    └── index.html
 
@@ -129,7 +129,7 @@ Check the status of your new nodejs app with the command:
 
 Which should return something like:
 
-        In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
+        In project nodejs (nodejs-echo) on app https://10.2.2.2:8443
 
         svc/nodejs-ex - 172.30.108.183:8080
           dc/nodejs-ex deploys istag/nodejs-ex:latest <-
@@ -137,7 +137,7 @@ Which should return something like:
               build #1 running for 7 seconds
             deployment #1 waiting on image or update
 
-Note the server address for the web console, as yours will likely differ if you're not using the Vagrant set-up. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
+Note the app address for the web console, as yours will likely differ if you're not using the Vagrant set-up. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
 
 If the build is not yet started (you can check by running `oc get builds`), start one and stream the logs with:
 
@@ -188,7 +188,7 @@ The `-e` flag sets the environment variables we want used in the configuration o
 
 Running `oc status` or checking the web console will reveal the address of the newly created MongoDB:
 
-	In project nodejs-echo on server https://10.2.2.2:8443
+	In project nodejs-echo on app https://10.2.2.2:8443
 
 	svc/mongodb-26-centos7 - 172.30.0.112:27017
 	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
@@ -211,7 +211,7 @@ We need to add the environment variable `MONGO_URL` to our Node.js web app so th
 
 Then check `oc status` to see that an updated deployment has been kicked off:
 
-	In project nodejs-echo on server https://10.2.2.2:8443
+	In project nodejs-echo on app https://10.2.2.2:8443
 
 	svc/mongodb-26-centos7 - 172.30.0.112:27017
 	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
